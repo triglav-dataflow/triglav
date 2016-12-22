@@ -3,3 +3,4 @@
 cp config/database.yml{.development,}
 cp config/settings.yml{.development,}
 cp config/secrets.yml{.development,}
+cp db/seeds.rb{.development,}

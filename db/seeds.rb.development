@@ -1,0 +1,3 @@
+if Rails.env.development?
+  User.create_with(password: 'triglav_test', authenticator: 'local').find_or_create_by(name: 'triglav_test')
+end
