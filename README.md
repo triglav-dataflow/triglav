@@ -86,19 +86,19 @@ and access to [http://localhost:7800/apidocs](http://localhost:7800/apidocs). By
 
 Authenticate with `POST /auth/token`.
 
-![image](https://github.dena.jp/github-enterprise-assets/0000/0795/0001/7644/5443f55c-8c1a-11e6-810b-58885c8d7aed.png)
+![image](https://cloud.githubusercontent.com/assets/2290461/21415529/0736fb72-c84e-11e6-997f-0c4153352f6b.png)
 
 Click `Try it out!` button, you will get an access token
 
-![image](https://github.dena.jp/github-enterprise-assets/0000/0795/0001/7645/e1af3dca-8c1a-11e6-9da2-617d1ccd40c7.png)
+![image](https://cloud.githubusercontent.com/assets/2290461/21415534/0e0090c6-c84e-11e6-966f-24c843f78679.png)
 
 Go to top bar of Swagger UI, and click `Authorize` button.
 
-![image](https://github.dena.jp/github-enterprise-assets/0000/0795/0001/7646/f353f9a8-8c1a-11e6-9efe-085332a32d4e.png)
+![image](https://cloud.githubusercontent.com/assets/2290461/21415537/145e8874-c84e-11e6-9a6e-7ed4aa82df94.png)
 
 Paste your access token to the `value` field, then click Authorize.
 
-![image](https://github.dena.jp/github-enterprise-assets/0000/0795/0001/7647/0463424e-8c1b-11e6-8dba-e0124bb9f516.png)
+![image](https://cloud.githubusercontent.com/assets/2290461/21415538/1889b7c0-c84e-11e6-8d97-2a77e9350b0f.png)
 
 Now, you should be able to hit any APIs.
 
