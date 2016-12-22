@@ -1,0 +1,7 @@
+{
+  "modelPackage":"io.triglav.client",
+  "apiPackage":"io.triglav.client.api",
+  "groupId":"io.triglav",
+  "artifactId":"triglav-client-java",
+  "artifactVersion":"0.1.23"
+}

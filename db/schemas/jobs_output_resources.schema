@@ -1,0 +1,8 @@
+create_table "jobs_output_resources", create_table_options do |t|
+
+  t.bigint   "job_id"
+  t.bigint   "resource_id"
+
+end
+
+add_index "jobs_output_resources", ["job_id", "resource_id"], name: 'index_jobs_output_resources'

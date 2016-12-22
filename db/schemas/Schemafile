@@ -1,0 +1,9 @@
+def create_table_options
+  options = {force: true, id: :bigint, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8'}
+  options[:options] << ' AUTO_INCREMENT=600000000' if ENV['RAILS_ENV'] == 'staging'
+  options
+end
+
+Dir.glob(File.join(File.dirname(__FILE__), '*.schema')).each do |file|
+  require file
+end

@@ -1,0 +1,19 @@
+create_table "resources", create_table_options do |t|
+
+  t.text      "description", limit: 16777215
+  t.string    "uri", collation: 'latin1_swedish_ci', null: false
+  t.string    "unit", collation: 'latin1_swedish_ci', null: false # daily, hourly
+  t.string    "timezone", collation: 'latin1_swedish_ci', null: false # %:z format such as +00:00, +09:00
+  t.integer   "span_in_days" # duration to monitor
+
+  # t.integer   "expires_after" # expire messages in this resource topic xx seconds after creation
+
+  t.boolean   "consumable",  default: false
+  t.boolean   "notifiable",  default: false
+
+  t.datetime  "created_at"
+  t.datetime  "updated_at"
+
+end
+
+add_index "resources", ["uri"]

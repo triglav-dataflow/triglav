@@ -1,0 +1,18 @@
+create_table "users", create_table_options do |t|
+
+  t.string    "name",              limit: 127
+  t.text      "description",       limit: 16777215
+
+  # authenticator is reserved for future extension such as LDAP authentication
+  t.string    "authenticator",     collation: 'latin1_swedish_ci'
+  t.string    "encrypted_password"
+  t.string    "salt",              collation: 'latin1_swedish_ci'
+  t.text      "groups",            limit: 16777215
+  t.string    "email",             collation: 'latin1_swedish_ci'
+
+  t.datetime  "created_at"
+  t.datetime  "updated_at"
+
+end
+
+add_index "users", ["name", "authenticator"], unique: true

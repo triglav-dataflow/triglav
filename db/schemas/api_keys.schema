@@ -1,0 +1,12 @@
+create_table "api_keys", create_table_options do |t|
+
+  t.string   "access_token",      null: false
+  t.bigint   "user_id",           null: false
+
+  t.datetime "expires_at"
+  t.datetime "last_accessed_at"
+
+end
+
+add_index :api_keys, ["user_id"]
+add_index :api_keys, ["access_token"]
