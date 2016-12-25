@@ -16,7 +16,7 @@ Core API and message queue server of Triglav.
 
 ## Prepare
 
-Copy config files and modify config files if you want.
+Copy config files and modify them if you want.
 
 ```
 cp config/database.yml{.development,}
