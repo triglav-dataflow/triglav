@@ -20,9 +20,6 @@ gem 'ridgepole', '~> 0.6.0.beta'
 # Authenticator
 gem 'bcrypt-ruby'
 
-# Validators
-gem 'validates_email_format_of'
-
 # Useful in operations
 gem 'puma_worker_killer'
 gem 'sigdump', require: 'sigdump/setup'
