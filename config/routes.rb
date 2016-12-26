@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get '/messages'  => 'messages#index'
       post '/messages'  => 'messages#create'
       post '/fetch_messages'  => 'messages#index'
+      get '/messages/last_id' => 'messages#last_id'
     end
   end
   get '/apidocs' => redirect('/swagger/dist/index.html?url=/api/v1/apidocs.json')

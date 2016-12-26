@@ -175,6 +175,41 @@ module Api
         end
       end
 
+      swagger_path '/messages/last_id' do
+        operation :get do
+          key :description, 'Get the current last message id which would be used as a first offset to fetch messages'
+          key :operationId, 'getLastMessageId'
+          key :tags, ['messages']
+          security do
+            key :api_key, []
+          end
+          response 200 do
+            key :description, 'last message id response'
+            schema do
+              key :'$ref', :LastMessageIdResponse
+            end
+          end
+          response :unprocessable_entity do
+            key :description, 'unexpected error'
+            schema do
+              key :'$ref', :ErrorModel
+            end
+          end
+        end
+      end
+
+      swagger_schema :LastMessageIdResponse do
+        property :id do
+          key :description, 'last message id'
+          key :type, :integer
+        end
+      end
+
+      def last_id
+        last_id = Message.last.id
+        render json: {id: last_id}
+      end
+
       private
 
       def messages_params
