@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       get    '/auth/me'     => 'auth#me'
 
       resources :users
-      resources :contacts
 
       get '/clusters'  => 'clusters#index'
       get '/clusters/:id_or_name' => 'clusters#show', constraints: {id_or_name: /.+/}
