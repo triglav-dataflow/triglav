@@ -206,7 +206,7 @@ module Api
       end
 
       def last_id
-        last_id = Message.last.id
+        last_id = Message.last&.id || 0
         render json: {id: last_id}
       end
 
