@@ -41,36 +41,8 @@ module Api
       # GET /aggregated_resources
       # GET /aggregated_resources.json
       def aggregated_resources
-        # @todo: Using materialized view is better (In mysql, insert select with trigger)
-        #
-        # EXAMPLE:
-        # uri       unit    span_in_days consumable notifiable
-        # hdfs://a  hourly  10           true       false
-        # hdfs://a  daily   32           true       false
-        # hdfs://b  hourly  32           true       false
-        # hdfs://b  hourly  32           true       true
-        #
-        # non_notifiable_uris =>
-        # ['hdfs://a']
-        #
-        # aggregated_resources =>
-        # uri       unit         span_in_days
-        # hdfs://a  daily,hourly 32
-
-        non_notifiable_uris = Resource.
-          where('uri LIKE ?', "#{params.require(:uri_prefix)}%").
-          group('uri').
-          having('BIT_OR(notifiable) = false').
-          pluck('uri')
-
-        aggregated_resources = Resource.
-          select('uri, GROUP_CONCAT(DISTINCT(unit) order by unit) AS unit, timezone, MAX(span_in_days) AS span_in_days').
-          where(uri: non_notifiable_uris).
-          where(consumable: true).
-          group('uri', 'timezone').
-          order('uri')
-
-        render json: aggregated_resources, each_serializer: AggregatedResourceEachSerializer
+        resources = Resource.aggregated_resources(uri_prefix: params.require(:uri_prefix))
+        render json: resources, each_serializer: AggregatedResourceEachSerializer
       end
 
       # GET /resources
