@@ -67,6 +67,8 @@ class MessageSerializer < ActiveModel::Serializer
       key :type, :string
       key :description, 'Timezone of resource time, that is, timezone of %Y-%m-%d for hdfs://path/to/%Y-%m-%d such as +09:00'
     end
+    # Swagger supports only fixed data type, and does not support flexible json data type
+    # To support flexible json type, we receive a json *string* and parse it in inside
     property :payload do
       key :type, :string
       key :description, 'Any json string'
