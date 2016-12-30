@@ -33,7 +33,8 @@ module Triglav
 
     config.autoload_paths += %W( #{config.root}/app/policies
                                  #{config.root}/app/services )
-    config.eager_load_paths += %W( #{config.root}/lib/ )
+    config.eager_load_paths += %W( #{config.root}/lib/
+                                   #{config.root}/lib/validators/ )
 
     require_relative '../lib/triglav/logger'
     require_relative '../lib/triglav/rack/access_logger'
