@@ -8,6 +8,9 @@ class Resource < ApplicationRecord
 
   before_save :set_default
 
+  has_many :jobs_input_resources, dependent: :destroy
+  has_many :jobs_output_resources, dependent: :destroy
+
   def set_default
     self.timezone ||= Settings.resource.default_timezone
     self.span_in_days ||= Settings.resource.default_span_in_days
