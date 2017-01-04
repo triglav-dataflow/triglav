@@ -57,7 +57,7 @@ class MessageSerializer < ActiveModel::Serializer
     end
     property :resource_unit do
       key :type, :string
-      key :description, 'Time unit of resource to monitor such as daily, or hourly'
+      key :description, 'Time unit of resource to monitor such as singular, daily, or hourly'
     end
     property :resource_time do
       key :type, :integer

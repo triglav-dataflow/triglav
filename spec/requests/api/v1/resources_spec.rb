@@ -26,6 +26,7 @@ RSpec.describe 'Resource resources', :type => :request do
 
   let(:resources) do
     [
+      FactoryGirl.create(:resource, uri: 'hdfs://localhost/aaa.csv.gz', unit: 'singular',  span_in_days: 32, consumable: true, notifiable: false),
       FactoryGirl.create(:resource, uri: 'hdfs://localhost/aaa.csv.gz', unit: 'daily',  span_in_days: 32, consumable: true, notifiable: false),
       FactoryGirl.create(:resource, uri: 'hdfs://localhost/aaa.csv.gz', unit: 'hourly', span_in_days: 16, consumable: true, notifiable: false),
       FactoryGirl.create(:resource, uri: 'hdfs://localhost/aaa.csv.gz', unit: 'hourly', span_in_days: 48, consumable: true, notifiable: false),
@@ -45,7 +46,8 @@ RSpec.describe 'Resource resources', :type => :request do
       "Get aggregated resources required to be monitored (i.e., consumable = true and notifiable = false).<br/>" \
       "<br/>" \
       "`resource_prefix` query parameter is required. " \
-      "Each returned resource has `uri`, `unit`, `timezone`, `span_in_days` parameters. Note that the `unit` paramter would be `daily,hourly` in addition to `hourly`, `daily`.<br/>" \
+      "Each returned resource has `uri`, `unit`, `timezone`, `span_in_days` parameters. " \
+      "`unit` is `singular` or `daily` or `hourly`, or their combinations such as `daily,hourly` or `daily,hourly,singular`.<br/>" \
       "<br/>" \
       "FYI: Aggregation is operated as following SQL: " \
       "`SELECT uri, GROUP_CONCAT(DISTINCT(unit) order by unit) AS unit, timezone, MAX(span_in_days) AS span_in_days GROUP BY uri`<br/>" \
@@ -66,7 +68,7 @@ RSpec.describe 'Resource resources', :type => :request do
 
       expect(response.status).to eq 200
       expect(json.size).to eq 2
-      expect(json[0]['unit']).to eq 'daily,hourly'
+      expect(json[0]['unit']).to eq 'daily,hourly,singular'
 
     end
   end
@@ -91,7 +93,7 @@ RSpec.describe 'Resource resources', :type => :request do
       json = JSON.parse(response.body)
 
       expect(response.status).to eq 200
-      expect(json.size).to eq 6
+      expect(json.size).to eq 7
 
     end
   end
