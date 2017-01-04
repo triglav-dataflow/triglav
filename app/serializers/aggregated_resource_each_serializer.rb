@@ -10,7 +10,7 @@ class AggregatedResourceEachSerializer < ActiveModel::Serializer
     end
     property :unit do
       key :type, :string
-      key :description, "'daily' or 'hourly', and 'daily,hourly'"
+      key :description, "'singular' or 'daily' or 'hourly', or their combinations such as 'daily,hourly', 'daily,hourly,singular'"
     end
     property :timezone do
       key :type, :string

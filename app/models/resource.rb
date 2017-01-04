@@ -3,7 +3,7 @@
 class Resource < ApplicationRecord
   has_many :messages, primary_key: 'uri', foreign_key: 'resource_uri'
 
-  validates :unit, inclusion: { in: %w(daily hourly daily,hourly) } # monthly, streaming support?
+  validates :unit, inclusion: { in: %w(singular daily hourly) } # monthly, streaming support?
   validates :timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
 
   before_save :set_default

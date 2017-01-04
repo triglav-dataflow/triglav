@@ -11,7 +11,7 @@ class ResourceEachSerializer < ActiveModel::Serializer
       schema do
         property :unit do
           key :type, :string
-          key :description, "'daily' or 'hourly'"
+          key :description, "'singualr' or 'daily' or 'hourly'"
         end
         property :consumable do
           key :type, :boolean

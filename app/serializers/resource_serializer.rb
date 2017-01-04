@@ -63,7 +63,7 @@ class ResourceSerializer < ActiveModel::Serializer
     end
     property :unit do
       key :type, :string
-      key :description, 'Time unit of resource to monitor such as daily, or hourly'
+      key :description, 'Time unit of resource to monitor such as singular, daily, or hourly'
     end
     property :timezone do
       key :type, :string
