@@ -1,0 +1,4 @@
+source "http://rubygems.org"
+
+gem 'triglav_client', git: 'git@github.com:sonots/triglav-client-ruby'
+gem 'parallel'
