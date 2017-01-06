@@ -49,3 +49,4 @@ vendor/
 .bundle/
 .ruby-version
 bin/
+benchmark/Gemfile.lock
