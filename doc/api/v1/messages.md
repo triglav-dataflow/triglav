@@ -1,13 +1,13 @@
 ## GET /api/v1/messages
-List messages whose message id is greater than or equal to offset with HTTP GET method<br/><br/>`offset` is required.<br/>`resource_uris` are optional, but one resource_uri should be set usually.<br/>`limit` is optional, and default is 100.<br/>Returned `resource_time` is in unix timestamp<br/><br/>You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>
+List messages whose message id is greater than or equal to offset with HTTP GET method<br/><br/>`offset` is required.<br/>`resource_uris` are optional, but one resource_uri should be set usually.<br/>`limit` is optional, and default is 100.<br/>`resource_unit` is optional, but required if `resource_time` is given.<br/>`resource_time` is optional.<br/>Returned `resource_time` is in unix timestamp<br/><br/>You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>
 
 ### Example
 
 #### Request
 ```
-GET /api/v1/messages?offset=29&limit=100 HTTP/1.1
+GET /api/v1/messages?offset=11&limit=100&resource_uris[]=hdfs://localhost/path/to/file.csv.gz&resource_unit=daily&resource_time=1467298800 HTTP/1.1
 Accept: application/json
-Authorization: f318e3f3e4bcb2e5c587cba756050435
+Authorization: 5489933ddcec13ed354db594dc614e1a
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -19,29 +19,29 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 265
 Content-Type: application/json; charset=utf-8
-ETag: W/"db08ee9634db9e8db085074ecaea88bd"
+ETag: W/"a6893623161268b665d040cafe09d8db"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 39af200c-203c-4e1e-9775-63d136f8e610
-X-Runtime: 0.065937
+X-Request-Id: 20d3b0eb-e7bc-459b-88e1-8a692ca86fe4
+X-Runtime: 0.049367
 X-XSS-Protection: 1; mode=block
 
 [
   {
-    "id": 29,
+    "id": 11,
     "resource_uri": "hdfs://localhost/path/to/file.csv.gz",
     "resource_unit": "daily",
     "resource_time": 1467298800,
     "resource_timezone": "+09:00",
     "payload": "{\"foo\":\"bar\"}",
-    "created_at": "2016-12-26T19:39:10.000+09:00",
-    "updated_at": "2016-12-26T19:39:10.000+09:00"
+    "created_at": "2017-01-10T14:21:08.000+09:00",
+    "updated_at": "2017-01-10T14:21:08.000+09:00"
   }
 ]
 ```
 
 ## POST /api/v1/fetch_messages
-Fetch messages whose message id is greater than or equal to offset with HTTP POST method<br/><br/>`offset` is required.<br/>`resource_uris` are optional, but one resource_uri should be set usually.<br/>`limit` is optional, and default is 100<br/>Returned `resource_time` is in unix timestamp<br/><br/>You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>
+Fetch messages whose message id is greater than or equal to offset with HTTP POST method<br/><br/>`offset` is required.<br/>`resource_uris` are optional, but one resource_uri should be set usually.<br/>`limit` is optional, and default is 100<br/>`resource_unit` is optional, but required if `resource_time` is given.<br/>`resource_time` is optional.<br/>Returned `resource_time` is in unix timestamp<br/><br/>You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>
 
 ### Example
 
@@ -49,17 +49,19 @@ Fetch messages whose message id is greater than or equal to offset with HTTP POS
 ```
 POST /api/v1/fetch_messages HTTP/1.1
 Accept: application/json
-Authorization: 69842d60bc09a94b4eab69451600acc8
-Content-Length: 82
+Authorization: 27d94d345c121686423396bd0fd19a7f
+Content-Length: 133
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
 
 {
-  "offset": 30,
+  "offset": 12,
   "limit": 100,
   "resource_uris": [
     "hdfs://localhost/path/to/file.csv.gz"
-  ]
+  ],
+  "resource_unit": "daily",
+  "resource_time": 1467298800
 }
 ```
 
@@ -69,23 +71,23 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 265
 Content-Type: application/json; charset=utf-8
-ETag: W/"41476a941d19e78b25a60eeefa19c717"
+ETag: W/"f25d17ff2119565c6ff0dea0f8e0381d"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: d7ebb98d-729b-4f13-9204-ed2d1b40e16d
-X-Runtime: 0.007787
+X-Request-Id: bb0b93c5-2f27-4b0c-aace-141d51263e04
+X-Runtime: 0.007134
 X-XSS-Protection: 1; mode=block
 
 [
   {
-    "id": 30,
+    "id": 12,
     "resource_uri": "hdfs://localhost/path/to/file.csv.gz",
     "resource_unit": "daily",
     "resource_time": 1467298800,
     "resource_timezone": "+09:00",
     "payload": "{\"foo\":\"bar\"}",
-    "created_at": "2016-12-26T19:39:10.000+09:00",
-    "updated_at": "2016-12-26T19:39:10.000+09:00"
+    "created_at": "2017-01-10T14:21:08.000+09:00",
+    "updated_at": "2017-01-10T14:21:08.000+09:00"
   }
 ]
 ```
@@ -99,7 +101,7 @@ Send messages<br/><br/>`resource_time` is in unix timestamp<br/>
 ```
 POST /api/v1/messages HTTP/1.1
 Accept: application/json
-Authorization: 4ad6cdd4b383007b26a824f32b5787f4
+Authorization: af7ed3071b6e87b0cce5cfeb44a7bcad
 Content-Length: 167
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -124,8 +126,8 @@ Content-Type: application/json; charset=utf-8
 ETag: W/"782da7bea2c961240e67b304927b4f9f"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: ce2f4859-e4e5-4d31-8552-8b84de7e6ac5
-X-Runtime: 0.013246
+X-Request-Id: 4a7921c9-25f2-448e-879f-623381fedfbb
+X-Runtime: 0.013286
 X-XSS-Protection: 1; mode=block
 
 {
@@ -142,7 +144,7 @@ Get last message id which would be used as a first offset to fetch messages<br/>
 ```
 GET /api/v1/messages/last_id HTTP/1.1
 Accept: application/json
-Authorization: 7e1deddb1849621ac1915ce2ac89d3c5
+Authorization: 2593eed4fe684f3b9cc877fff9b84fb0
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -154,14 +156,14 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 9
 Content-Type: application/json; charset=utf-8
-ETag: W/"3e0723b4564b84a541d327d01e522d48"
+ETag: W/"04d7a82c013ba361d4d35261866fe98f"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 73960b2c-14b7-4fc5-a792-2608903f10b7
-X-Runtime: 0.006394
+X-Request-Id: 372f2a38-2b63-4af1-85f6-ad8763945a62
+X-Runtime: 0.005657
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 32
+  "id": 14
 }
 ```
