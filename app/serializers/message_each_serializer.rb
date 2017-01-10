@@ -36,15 +36,6 @@ class MessageEachSerializer < ActiveModel::Serializer
         key :type, :string
       end
     end
-    property :resource_unit do
-      key :type, :string
-      key :description, 'Resource Unit such as daily, hourly, or singular. Required if resource_time is given'
-    end
-    property :resource_time do
-      key :type, :integer
-      key :format, :int64
-      key :description, 'Resource Time in UNIX TIMESTAMP'
-    end
   end
 
 end
