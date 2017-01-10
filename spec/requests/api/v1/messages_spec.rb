@@ -36,6 +36,8 @@ RSpec.describe 'Message resources', :type => :request do
       "`offset` is required.<br/>" \
       "`resource_uris` are optional, but one resource_uri should be set usually.<br/>" \
       "`limit` is optional, and default is 100.<br/>" \
+      "`resource_unit` is optional, but required if `resource_time` is given.<br/>" \
+      "`resource_time` is optional.<br/>" \
       "Returned `resource_time` is in unix timestamp<br/>" \
       "<br/>" \
       "You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>"
@@ -45,6 +47,9 @@ RSpec.describe 'Message resources', :type => :request do
       {
         offset: message.id,
         limit: 100,
+        resource_uris: [message.resource_uri],
+        resource_unit: message.resource_unit,
+        resource_time: message.resource_time,
       }
     end
 
@@ -65,6 +70,8 @@ RSpec.describe 'Message resources', :type => :request do
       "`offset` is required.<br/>" \
       "`resource_uris` are optional, but one resource_uri should be set usually.<br/>" \
       "`limit` is optional, and default is 100<br/>" \
+      "`resource_unit` is optional, but required if `resource_time` is given.<br/>" \
+      "`resource_time` is optional.<br/>" \
       "Returned `resource_time` is in unix timestamp<br/>" \
       "<br/>" \
       "You can use either of GET /messages or POST /fetch_messages, but note that GET has limitation for query parameters length<br/>"
@@ -75,6 +82,8 @@ RSpec.describe 'Message resources', :type => :request do
         offset: message.id,
         limit: 100,
         resource_uris: [message.resource_uri],
+        resource_unit: message.resource_unit,
+        resource_time: message.resource_time,
       }
     end
 

@@ -41,6 +41,20 @@ module Api
               end
             end
           end
+          parameter do
+            key :name, :resource_unit
+            key :in, :query
+            key :description, 'Resource Unit such as daily, hourly, or singular. Required if resource_time is given'
+            key :required, false
+            key :type, :string
+          end
+          parameter do
+            key :name, :resource_time
+            key :in, :query
+            key :description, 'Resource Time in UNIX Timestamp'
+            key :required, false
+            key :type, :integer
+          end
           response 200 do
             key :description, 'message response'
             schema do
@@ -110,6 +124,12 @@ module Api
           else
             @messages = @messages.where(resource_uri: params[:resource_uris])
           end
+        end
+        if params[:resource_time].present?
+          params.require(:resource_unit)
+          @messages = @messages.where(resource_unit: params[:resource_unit], resource_time: params[:resource_time])
+        elsif params[:resource_unit].present?
+          @messages = @messages.where(resource_unit: params[:resource_unit])
         end
         @messages = @messages.order(id: :asc)
         @messages = @messages.limit(params[:limit] || 100)
