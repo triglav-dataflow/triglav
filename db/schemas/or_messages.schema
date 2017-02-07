@@ -1,0 +1,12 @@
+create_table "or_messages", create_table_options do |t|
+
+  t.bigint   "job_id", null: false
+  t.bigint   "resource_time", null: false
+  t.string   "resource_timezone", null: false
+
+  t.datetime "created_at"
+  t.datetime "updated_at"
+
+end
+
+add_index "or_messages", ["id", "job_id"], name: 'index_or_messages'

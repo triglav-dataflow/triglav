@@ -6,4 +6,32 @@ class Message < ApplicationRecord
   validates :resource_time, presence: true, numericality: { only_integer: true }
   validates :resource_timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
   validates :payload, json: true
+
+  def self.create_messages(params_list)
+    ActiveRecord::Base.transaction do
+      objs = []
+      params_list.each do |params|
+        objs << self.build(params)
+      end
+      self.import(objs)
+    end
+  end
+
+  def self.build(params)
+    resource_uri = params[:resource_uri]
+    resource_unit = params[:resource_unit]
+    resource_timezone = params[:resource_timezone]
+    resource_ids = Resource.where(uri: resource_uri, unit: resource_unit, timezone: resource_timezone).pluck(:id)
+    job_ids = JobsInputResource.where(resource_id: resource_ids).pluck(:job_id)
+    job_ids.each do |job_id|
+      condition = Job.find_by(id: job_id).pluck(:condition)
+      params_with_job_id = params.merge(job_id: job_id)
+      if condition&.downcase == 'or'.freeze
+        OrMessage.create_if_allset(params_with_job_id)
+      else # or
+        AndMessage.create_if_allset(params_with_job_id)
+      end
+    end
+    new(params)
+  end
 end

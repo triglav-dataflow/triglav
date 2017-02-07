@@ -1,17 +1,14 @@
-create_table "messages", create_table_options do |t|
+create_table "or_internal_messages", create_table_options do |t|
 
+  t.bigint   "job_id", null: false
   t.string   "resource_uri", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_unit", null: false
   t.string   "resource_timezone", null: false
-
   t.bigint   "resource_time", null: false
-  t.text     "payload"
 
   t.datetime "created_at"
   t.datetime "updated_at"
 
 end
 
-add_index "messages", ["id", "resource_uri", "resource_unit", "resource_time"], name: "index_messages"
-add_index "messages", ["updated_at", "id"]
-
+add_index "or_internal_messages", ["job_id", "resource_time", "resource_uri"], name: 'index_or_internal_messages'

@@ -164,11 +164,7 @@ module Api
       # POST /messages.json
       def create
         begin
-          messages = []
-          messages_params.each do |message_params|
-            messages << Message.new(message_params)
-          end
-          result = Message.import(messages)
+          result = Message.create_messages(messages_params)
           render json: {num_inserts: result[:num_inserts]}
         rescue ActiveRecord::StatementInvalid => e
           render json: {error: "#{e.class} #{e.message}", backtrace: e.backtrace}, status: :unprocessable_entity

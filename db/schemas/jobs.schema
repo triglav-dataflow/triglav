@@ -1,6 +1,7 @@
 create_table "jobs", create_table_options do |t|
 
   t.string    "uri", collation: 'latin1_swedish_ci', null: false
+  t.string    "condition", collation: 'latin1_swedish_ci', default: 'and'
 
   t.datetime  "created_at"
   t.datetime  "updated_at"
