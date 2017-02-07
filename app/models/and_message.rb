@@ -1,7 +1,7 @@
 class AndMessage < ApplicationRecord
   belongs_to :job
-  validates :resource_time, presence: true, numericality: { only_integer: true }
-  validates :resource_timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
+  validates :time, presence: true, numericality: { only_integer: true }
+  validates :timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
 
   # 1) Fire if all resources in a job for a resource_time is set
   # 2) Reset all events for the resource_time
@@ -31,8 +31,8 @@ class AndMessage < ApplicationRecord
     if time_resources_size == input_resources_size
       AndMessage.create(
         job_id: job_id,
-        resource_time: resource_time,
-        resource_timezone: resource_timezone
+        time: resource_time,
+        timezone: resource_timezone
       )
       AndInternalMessage.where(
         job_id: job_id,

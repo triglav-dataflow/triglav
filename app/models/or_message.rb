@@ -1,7 +1,7 @@
 class OrMessage < ApplicationRecord
   belongs_to :job
-  validates :resource_time, presence: true, numericality: { only_integer: true }
-  validates :resource_timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
+  validates :time, presence: true, numericality: { only_integer: true }
+  validates :timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
 
   # 1) Fire if all resources in a job for a resource_time is set
   # 2) Back to 1 (that is, next coming event immediately fires a next "OR" event)
@@ -30,8 +30,8 @@ class OrMessage < ApplicationRecord
     if time_resources_size == input_resources_size
       OrMessage.create(
         job_id: job_id,
-        resource_time: resource_time,
-        resource_timezone: resource_timezone
+        time: resource_time,
+        timezone: resource_timezone
       )
     end
   end
