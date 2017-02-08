@@ -7,7 +7,7 @@ Get aggregated resources required to be monitored (i.e., consumable = true and n
 ```
 GET /api/v1/aggregated_resources?uri_prefix=hdfs://localhost HTTP/1.1
 Accept: application/json
-Authorization: 826dc974972f2232b3768ed590c34e4a
+Authorization: 31fc848fdaeb2441befb24d535ce45b0
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -22,8 +22,8 @@ Content-Type: application/json; charset=utf-8
 ETag: W/"9a3d4c5329bde6ef217bf86390886968"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 2bc1d59c-2e45-46c6-814d-345436fe761a
-X-Runtime: 0.050161
+X-Request-Id: 6ea21cc5-afa0-4904-9738-d2c795891482
+X-Runtime: 0.024649
 X-XSS-Protection: 1; mode=block
 
 [
@@ -51,7 +51,7 @@ Get resource index<br/>
 ```
 GET /api/v1/resources?uri_prefix=hdfs://localhost HTTP/1.1
 Accept: application/json
-Authorization: 02dc1e20aab65b73cb66f81a0253211b
+Authorization: f10be16c1dd7792fb9035ecb32afbb13
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -66,8 +66,8 @@ Content-Type: application/json; charset=utf-8
 ETag: W/"241499a51f690e3c48845461c5b66a19"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 5e46146d-82c6-4475-a3b0-1aad1e3ba5f7
-X-Runtime: 0.010587
+X-Request-Id: d43b893f-e524-4ebe-a7c3-aa000a0196e1
+X-Runtime: 0.012799
 X-XSS-Protection: 1; mode=block
 
 [
@@ -137,9 +137,9 @@ Get a resource
 
 #### Request
 ```
-GET /api/v1/resources/282 HTTP/1.1
+GET /api/v1/resources/124 HTTP/1.1
 Accept: application/json
-Authorization: de98e2af91eaa43c5a24e8f405e849be
+Authorization: 8768f70f0a7caf3bfd43c027aa223cd4
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -151,15 +151,15 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 251
 Content-Type: application/json; charset=utf-8
-ETag: W/"f626e14aff79578013bb9629ebd53f16"
+ETag: W/"b19bc191bcd15299107b491858022dc3"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: f463c979-e288-4e64-a0d9-283181e6205c
-X-Runtime: 0.008709
+X-Request-Id: 840ffda2-c340-499e-946e-17632b8d3787
+X-Runtime: 0.008493
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 282,
+  "id": 124,
   "description": "MyString",
   "uri": "hdfs://localhost/aaa.csv.gz",
   "unit": "daily",
@@ -167,8 +167,8 @@ X-XSS-Protection: 1; mode=block
   "span_in_days": 32,
   "consumable": true,
   "notifiable": false,
-  "created_at": "2017-01-04T10:26:46.000+09:00",
-  "updated_at": "2017-01-04T10:26:46.000+09:00"
+  "created_at": "2017-02-08T16:24:26.000+09:00",
+  "updated_at": "2017-02-08T16:24:26.000+09:00"
 }
 ```
 
@@ -181,7 +181,7 @@ Create a resource
 ```
 POST /api/v1/resources HTTP/1.1
 Accept: application/json
-Authorization: 8463e8b60ab2eb6d55246b56bb65e1dc
+Authorization: 2977dd1fc9ce31d9dfeb5dc5aeddbd4f
 Content-Length: 173
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -204,15 +204,15 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 260
 Content-Type: application/json; charset=utf-8
-ETag: W/"d2b9adc21558559d1c7204e89e1c0767"
+ETag: W/"b84874134726b61a6f1a1773fa129b75"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: cd96544b-389a-4112-8f01-d63cca3dff7e
-X-Runtime: 0.009400
+X-Request-Id: 2b05b8a1-5929-4e13-a4cf-ae4742a80045
+X-Runtime: 0.012610
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 284,
+  "id": 126,
   "description": "MyString",
   "uri": "hdfs://localhost/path/to/file.csv.gz",
   "unit": "daily",
@@ -220,8 +220,8 @@ X-XSS-Protection: 1; mode=block
   "span_in_days": 32,
   "consumable": true,
   "notifiable": false,
-  "created_at": "2017-01-04T10:26:46.000+09:00",
-  "updated_at": "2017-01-04T10:26:46.000+09:00"
+  "created_at": "2017-02-08T16:24:26.000+09:00",
+  "updated_at": "2017-02-08T16:24:26.000+09:00"
 }
 ```
 
@@ -232,15 +232,15 @@ Update a resource
 
 #### Request
 ```
-PUT /api/v1/resources/285 HTTP/1.1
+PUT /api/v1/resources/127 HTTP/1.1
 Accept: application/json
-Authorization: 3784c05e479a66a86d03c4dcde7d4fba
+Authorization: 63d6cf2fb1c19864e5e92ebd80ccd701
 Content-Length: 170
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
 
 {
-  "id": 285,
+  "id": 127,
   "description": "MyString",
   "uri": "hdfs://localhost/path/to/file.csv.gz",
   "unit": "daily",
@@ -257,15 +257,15 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 260
 Content-Type: application/json; charset=utf-8
-ETag: W/"a912e2ea8fb71d054456ff7201d99cec"
+ETag: W/"abf514e15549692aa4133bbcba28ef58"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 2f7f2d77-fc8e-4c02-81eb-eeb7c8330f49
-X-Runtime: 0.011057
+X-Request-Id: 667e5ffc-07b5-4b36-be60-4af681d1d136
+X-Runtime: 0.012930
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 285,
+  "id": 127,
   "description": "MyString",
   "uri": "hdfs://localhost/path/to/file.csv.gz",
   "unit": "daily",
@@ -273,8 +273,8 @@ X-XSS-Protection: 1; mode=block
   "span_in_days": 32,
   "consumable": true,
   "notifiable": false,
-  "created_at": "2017-01-04T10:26:46.000+09:00",
-  "updated_at": "2017-01-04T10:26:46.000+09:00"
+  "created_at": "2017-02-08T16:24:26.000+09:00",
+  "updated_at": "2017-02-08T16:24:26.000+09:00"
 }
 ```
 
@@ -285,9 +285,9 @@ Delete a resource
 
 #### Request
 ```
-DELETE /api/v1/resources/287 HTTP/1.1
+DELETE /api/v1/resources/129 HTTP/1.1
 Accept: application/json
-Authorization: ff85989bdc11006afba650d2ec56d3cf
+Authorization: 639d477c7011844debe2d22ed4296bb4
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -299,7 +299,7 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 8f2e5eac-7fc6-4a63-bcdc-c8af44d12d9e
-X-Runtime: 0.032710
+X-Request-Id: 438e53d7-82c1-42bd-8c37-ec3ff9a19928
+X-Runtime: 0.023694
 X-XSS-Protection: 1; mode=block
 ```

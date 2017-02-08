@@ -1,7 +1,6 @@
 create_table "job_internal_messages", create_table_options do |t|
 
   t.bigint   "job_id", null: false
-  t.string   "job_logical_op", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_uri", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_unit", null: false
   t.string   "resource_timezone", null: false

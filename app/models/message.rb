@@ -11,16 +11,16 @@ class Message < ApplicationRecord
     ActiveRecord::Base.transaction do
       objs = []
       params_list.each do |params|
-        objs << self.build(params)
+        objs << self.build_with_job_message(params)
       end
       self.import(objs)
     end
   end
 
-  def self.build(params)
-    resource_uri = params[:resource_uri]
-    resource_unit = params[:resource_unit]
-    resource_timezone = params[:resource_timezone]
+  def self.build_with_job_message(params)
+    resource_uri = params[:resource_uri] || raise('resource_uri is required')
+    resource_unit = params[:resource_unit] || raise('resource_unit is required')
+    resource_timezone = params[:resource_timezone] || raise('resource_timezone is required')
 
     resource_ids = Resource.where(
       uri: resource_uri,
@@ -32,12 +32,12 @@ class Message < ApplicationRecord
     ).pluck(:job_id)
 
     job_ids.each do |job_id|
-      job_logical_op = Job.find_by(id: job_id).pluck(:logical_op)
-      params_with_job = params.merge(job_id: job_id, job_logical_op: job_logical_op)
-      if job_logical_op&.downcase == 'and'.freeze
-        JobMessage.create_if_and_allset(params_with_job)
+      job = Job.find_by(id: job_id)
+      params_with_job = params.merge(job_id: job_id)
+      if job.logical_op&.downcase == 'and'.freeze
+        JobMessage.create_if_andset(params_with_job)
       else
-        JobMessage.create_if_or_allset(params_with_job)
+        JobMessage.create_if_orset(params_with_job)
       end
     end
     new(params)

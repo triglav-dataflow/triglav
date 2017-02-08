@@ -8,14 +8,12 @@ class JobMessage < ApplicationRecord
   # 2) Back to 1 (that is, next comming event immediately fires a next OR message)
   def self.create_if_orset(params)
     job_id = params[:job_id] || raise('job_id is required')
-    job_logical_op = params[:job_logical_op] || raise('job_logical_op is required')
     resource_uri = params[:resource_uri] || raise('resource_uri is required')
     resource_unit = params[:resource_unit] || raise('resource_unit is required')
     resource_time = params[:resource_time] || raise('resource_time is required')
     resource_timezone = params[:resource_timezone] || raise('resource_timezone is required')
 
     JobInternalMessage.create_with(
-      job_logical_op: job_logical_op,
       resource_unit: resource_unit,
       resource_timezone: resource_timezone
     ).find_or_create_by(
@@ -34,7 +32,6 @@ class JobMessage < ApplicationRecord
     if time_resources_size == input_resources_size
       JobMessage.create(
         job_id: job_id,
-        job_logical_op: job_logical_op,
         time: resource_time,
         timezone: resource_timezone
       )
