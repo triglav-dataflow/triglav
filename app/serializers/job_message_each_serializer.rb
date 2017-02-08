@@ -7,6 +7,10 @@ class JobMessageEachSerializer < ActiveModel::Serializer
   include Swagger::Blocks
 
   swagger_schema :JobMessageEachResponse do
+    property :id do
+      key :type, :integer
+      key :format, :int64
+    end
     property :job_id do
       key :type, :integer
       key :description, 'Job ID'
