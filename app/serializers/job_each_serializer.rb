@@ -1,5 +1,5 @@
 class JobEachSerializer < ActiveModel::Serializer
-  attributes :id, :uri, :created_at, :updated_at
+  attributes :id, :uri, :logical_op, :created_at, :updated_at
 
   include Swagger::Blocks
 
@@ -9,6 +9,9 @@ class JobEachSerializer < ActiveModel::Serializer
       key :format, :int64
     end
     property :uri do
+      key :type, :string
+    end
+    property :logical_op do
       key :type, :string
     end
     property :created_at do
