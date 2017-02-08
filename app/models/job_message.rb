@@ -1,15 +1,17 @@
 class JobMessage < ApplicationRecord
   belongs_to :job
+  validates :job_id, presence: true
   validates :time, presence: true, numericality: { only_integer: true }
   validates :timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
 
   # 1) Fire if all resources in a job for a resource_time is set
   # 2) Back to 1 (that is, next comming event immediately fires a next OR message)
-  def self.create_if_or_allset(params)
+  def self.create_if_orset(params)
     job_id = params[:job_id] || raise('job_id is required')
     job_condition = params[:job_condition] || raise('job_condition is required')
     resource_uri = params[:resource_uri] || raise('resource_uri is required')
     resource_unit = params[:resource_unit] || raise('resource_unit is required')
+    resource_time = params[:resource_time] || raise('resource_time is required')
     resource_timezone = params[:resource_timezone] || raise('resource_timezone is required')
 
     JobInternalMessage.create_with(
@@ -44,8 +46,8 @@ class JobMessage < ApplicationRecord
   # 1) Fire if all resources in a job for a resource_time is set
   # 2) Reset all events for the resource_time
   # 3) Back to 1
-  def self.create_if_and_allset(params)
-    obj = create_if_or_allset(params)
+  def self.create_if_andset(params)
+    obj = create_if_orset(params)
     return unless obj
     JobInternalMessage.where(
       job_id: params[:job_id],
