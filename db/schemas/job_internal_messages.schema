@@ -1,6 +1,7 @@
-create_table "and_internal_messages", create_table_options do |t|
+create_table "job_internal_messages", create_table_options do |t|
 
   t.bigint   "job_id", null: false
+  t.string   "job_condition", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_uri", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_unit", null: false
   t.string   "resource_timezone", null: false
@@ -11,4 +12,4 @@ create_table "and_internal_messages", create_table_options do |t|
 
 end
 
-add_index "and_internal_messages", ["job_id", "resource_time", "resource_uri"], name: 'index_and_internal_messages'
+add_index "job_internal_messages", ["job_id", "resource_time", "resource_uri"], name: 'index_job_internal_messages'

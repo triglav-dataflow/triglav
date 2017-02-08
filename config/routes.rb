@@ -37,10 +37,8 @@ Rails.application.routes.draw do
       post '/fetch_messages'  => 'messages#index'
       get '/messages/last_id' => 'messages#last_id'
 
-      get '/and_messages'  => 'and_messages#index'
-      get '/and_messages/last_id' => 'and_messages#last_id'
-      get '/or_messages'  => 'or_messages#index'
-      get '/or_messages/last_id' => 'or_messages#last_id'
+      get '/job_messages'  => 'job_messages#index'
+      get '/job_messages/last_id' => 'job_messages#last_id'
     end
   end
   get '/apidocs' => redirect('/swagger/dist/index.html?url=/api/v1/apidocs.json')

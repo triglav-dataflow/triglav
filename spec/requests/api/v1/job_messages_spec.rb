@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-RSpec.describe 'AndMessage resources', :type => :request do
+RSpec.describe 'JobMessage resources', :type => :request do
 
   let(:params) do
     {}
@@ -25,13 +25,13 @@ RSpec.describe 'AndMessage resources', :type => :request do
   end
 
   let(:message) do
-    FactoryGirl.create(:and_message)
+    FactoryGirl.create(:job_message)
   end
 
-  describe "Fetch AND messages", :autodoc do
+  describe "Fetch job-messages", :autodoc do
 
     let(:description) do
-      "Fetch AND messages whose message id is greater than or equal to offset<br/>" \
+      "Fetch job-messages whose message id is greater than or equal to offset<br/>" \
       "<br/>" \
       "`offset` is required.<br/>" \
       "`job_id` is required.<br/>" \
@@ -47,25 +47,25 @@ RSpec.describe 'AndMessage resources', :type => :request do
       }
     end
 
-    it "GET /api/v1/and_messages" do
+    it "GET /api/v1/job_messages" do
 
-      get "/api/v1/and_messages", params: params, env: env
+      get "/api/v1/job_messages", params: params, env: env
 
       expect(response.status).to eq 200
 
     end
   end
 
-  describe "Get last AND message id", :autodoc do
+  describe "Get last job-message id", :autodoc do
 
     let(:description) do
       "Get last AND message id which would be used as a first offset to fetch messages<br/>"
     end
 
-    it "GET /api/v1/and_messages/last_id" do
+    it "GET /api/v1/job_messages/last_id" do
       FactoryGirl.create(:message)
 
-      get "/api/v1/and_messages/last_id", params: nil, env: env
+      get "/api/v1/job_messages/last_id", params: nil, env: env
 
       expect(response.status).to eq 200
 

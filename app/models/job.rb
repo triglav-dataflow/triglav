@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
+  validates :condition, inclusion: { in: %w(and or) }
   has_many :jobs_input_resources, dependent: :destroy
   has_many :input_resources, through: :jobs_input_resources, source: 'resource'
   has_many :jobs_output_resources, dependent: :destroy

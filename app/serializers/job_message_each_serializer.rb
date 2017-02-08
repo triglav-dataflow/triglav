@@ -1,4 +1,4 @@
-class OrMessageEachSerializer < ActiveModel::Serializer
+class JobMessageEachSerializer < ActiveModel::Serializer
   attributes :id,
     :job_id,
     :time,
@@ -6,7 +6,7 @@ class OrMessageEachSerializer < ActiveModel::Serializer
 
   include Swagger::Blocks
 
-  swagger_schema :OrMessageEachResponse do
+  swagger_schema :JobMessageEachResponse do
     property :job_id do
       key :type, :integer
       key :description, 'Job ID'
