@@ -1,5 +1,5 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :uri, :created_at, :updated_at
+  attributes :id, :uri, :logical_op, :created_at, :updated_at
   has_many :input_resources
   has_many :output_resources
 
@@ -51,6 +51,9 @@ class JobSerializer < ActiveModel::Serializer
       key :format, :int64
     end
     property :uri do
+      key :type, :string
+    end
+    property :logical_op do
       key :type, :string
     end
     property :input_resources do
