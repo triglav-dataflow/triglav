@@ -4,7 +4,7 @@ RSpec.describe JobMessage, type: :model do
   let(:job_message_params) {
     {
       job_id: 1,
-      job_condition: 'or',
+      job_logical_op: 'or',
       time: 1356361200,
       timezone: '+09:00',
     }
@@ -17,7 +17,7 @@ RSpec.describe JobMessage, type: :model do
 
     it 'invalid' do
       expect { JobMessage.create!(job_message_params.except(:job_id)) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect { JobMessage.create!(job_message_params.except(:job_condition)) }.not_to raise_error
+      expect { JobMessage.create!(job_message_params.except(:job_logical_op)) }.not_to raise_error
       expect { JobMessage.create!(job_message_params.except(:time)) }.to raise_error(ActiveRecord::RecordInvalid)
       expect { JobMessage.create!(job_message_params.except(:timezone)) }.to raise_error(ActiveRecord::RecordInvalid)
     end
@@ -26,7 +26,7 @@ RSpec.describe JobMessage, type: :model do
   let(:message_params_with_job) {
     {
       job_id: 1,
-      job_condition: 'or',
+      job_logical_op: 'or',
       resource_uri: 'hdfs://foo/bar',
       resource_unit: 'daily',
       resource_time: 1356361200,
@@ -53,7 +53,7 @@ RSpec.describe JobMessage, type: :model do
         resource = job.input_resources.first
         params = {
           job_id: job.id,
-          job_condition: job.condition,
+          job_logical_op: job.logical_op,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_time: 1356361200,
@@ -62,7 +62,7 @@ RSpec.describe JobMessage, type: :model do
         subject = JobMessage.create_if_orset(params)
         expect(subject).to be_present
         expect(subject.job_id).to eq(params[:job_id])
-        expect(subject.job_condition).to eq(params[:job_condition])
+        expect(subject.job_logical_op).to eq(params[:job_logical_op])
         expect(subject.time).to eq(params[:resource_time])
         expect(subject.timezone).to eq(params[:resource_timezone])
       end
@@ -77,7 +77,7 @@ RSpec.describe JobMessage, type: :model do
           resource = resources[i]
           params = {
             job_id: job.id,
-            job_condition: job.condition,
+            job_logical_op: job.logical_op,
             resource_uri: resource.uri,
             resource_unit: resource.unit,
             resource_time: 1356361200,
@@ -90,7 +90,7 @@ RSpec.describe JobMessage, type: :model do
         resource = resources.last
         params = {
           job_id: job.id,
-          job_condition: job.condition,
+          job_logical_op: job.logical_op,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_time: 1356361200,
@@ -100,7 +100,7 @@ RSpec.describe JobMessage, type: :model do
         subject = JobMessage.create_if_orset(params)
         expect(subject).to be_present
         expect(subject.job_id).to eq(params[:job_id])
-        expect(subject.job_condition).to eq(params[:job_condition])
+        expect(subject.job_logical_op).to eq(params[:job_logical_op])
         expect(subject.time).to eq(params[:resource_time])
         expect(subject.timezone).to eq(params[:resource_timezone])
 
@@ -118,7 +118,7 @@ RSpec.describe JobMessage, type: :model do
         resource = job.input_resources.first
         params = {
           job_id: job.id,
-          job_condition: job.condition,
+          job_logical_op: job.logical_op,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_time: 1356361200,
@@ -127,7 +127,7 @@ RSpec.describe JobMessage, type: :model do
         subject = JobMessage.create_if_andset(params)
         expect(subject).to be_present
         expect(subject.job_id).to eq(params[:job_id])
-        expect(subject.job_condition).to eq(params[:job_condition])
+        expect(subject.job_logical_op).to eq(params[:job_logical_op])
         expect(subject.time).to eq(params[:resource_time])
         expect(subject.timezone).to eq(params[:resource_timezone])
       end
@@ -142,7 +142,7 @@ RSpec.describe JobMessage, type: :model do
           resource = resources[i]
           params = {
             job_id: job.id,
-            job_condition: job.condition,
+            job_logical_op: job.logical_op,
             resource_uri: resource.uri,
             resource_unit: resource.unit,
             resource_time: 1356361200,
@@ -155,7 +155,7 @@ RSpec.describe JobMessage, type: :model do
         resource = resources.last
         params = {
           job_id: job.id,
-          job_condition: job.condition,
+          job_logical_op: job.logical_op,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_time: 1356361200,
@@ -165,7 +165,7 @@ RSpec.describe JobMessage, type: :model do
         subject = JobMessage.create_if_andset(params)
         expect(subject).to be_present
         expect(subject.job_id).to eq(params[:job_id])
-        expect(subject.job_condition).to eq(params[:job_condition])
+        expect(subject.job_logical_op).to eq(params[:job_logical_op])
         expect(subject.time).to eq(params[:resource_time])
         expect(subject.timezone).to eq(params[:resource_timezone])
 

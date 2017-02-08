@@ -32,9 +32,9 @@ class Message < ApplicationRecord
     ).pluck(:job_id)
 
     job_ids.each do |job_id|
-      job_condition = Job.find_by(id: job_id).pluck(:condition)
-      params_with_job = params.merge(job_id: job_id, job_condition: job_condition)
-      if job_condition&.downcase == 'and'.freeze
+      job_logical_op = Job.find_by(id: job_id).pluck(:logical_op)
+      params_with_job = params.merge(job_id: job_id, job_logical_op: job_logical_op)
+      if job_logical_op&.downcase == 'and'.freeze
         JobMessage.create_if_and_allset(params_with_job)
       else
         JobMessage.create_if_or_allset(params_with_job)

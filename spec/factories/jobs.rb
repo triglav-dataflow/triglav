@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :job do
     uri "http://localhost/path/to/job?query=parameter"
-    condition "or"
+    logical_op "or"
   end
 
   factory :job_with_resources, parent: :job do
@@ -21,11 +21,11 @@ FactoryGirl.define do
   end
 
   factory :job_with_or_resources, parent: :job_with_resources do
-    condition "or"
+    logical_op "or"
   end
 
   factory :job_with_and_resources, parent: :job_with_resources do
-    condition "and"
+    logical_op "and"
   end
 
   factory :job_with_single_resource, parent: :job do

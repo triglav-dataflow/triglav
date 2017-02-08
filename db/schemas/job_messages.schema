@@ -1,7 +1,7 @@
 create_table "job_messages", create_table_options do |t|
 
   t.bigint   "job_id", null: false
-  t.string   "job_condition", collation: 'latin1_swedish_ci', null: false, default: 'or'
+  t.string   "job_logical_op", collation: 'latin1_swedish_ci', null: false, default: 'or'
   t.bigint   "time", null: false
   t.string   "timezone", null: false
 
