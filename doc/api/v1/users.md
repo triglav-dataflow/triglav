@@ -7,7 +7,7 @@ Returns user index<br/>Group is not included<br/>
 ```
 GET /api/v1/users HTTP/1.1
 Accept: application/json
-Authorization: 2a935f5950401e297f39726f430766aa
+Authorization: 3dedf50aecb1b29e8ef63871ee5c5275
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -17,48 +17,48 @@ Host: triglav.analytics.mbga.jp
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 555
+Content-Length: 561
 Content-Type: application/json; charset=utf-8
-ETag: W/"093f734edd2d00acb8eea246f6ca68d0"
+ETag: W/"465e3792ac7870b657e2cbedd27505f9"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: c4a25c4d-bb68-46f5-93ae-2f35cab74395
-X-Runtime: 0.026282
+X-Request-Id: 38daed6e-db0e-4fcc-ad8a-e895221da704
+X-Runtime: 0.018265
 X-XSS-Protection: 1; mode=block
 
 [
   {
-    "id": 84,
+    "id": 120,
     "name": "project_admin",
     "authenticator": "local",
     "email": "triglav-test@example.com"
   },
   {
-    "id": 85,
+    "id": 121,
     "name": "editable_user",
     "authenticator": "local",
     "email": "triglav-test@example.com"
   },
   {
-    "id": 86,
+    "id": 122,
     "name": "read_only_user_1",
     "authenticator": "local",
     "email": "triglav-test@example.com"
   },
   {
-    "id": 87,
+    "id": 123,
     "name": "read_only_user_2",
     "authenticator": "local",
     "email": "triglav-test@example.com"
   },
   {
-    "id": 88,
+    "id": 124,
     "name": "read_only_user_3",
     "authenticator": "local",
     "email": "triglav-test@example.com"
   },
   {
-    "id": 89,
+    "id": 125,
     "name": "user 1",
     "authenticator": "local",
     "email": "triglav-test@example.com"
@@ -73,9 +73,9 @@ Get a user
 
 #### Request
 ```
-GET /api/v1/users/90 HTTP/1.1
+GET /api/v1/users/126 HTTP/1.1
 Accept: application/json
-Authorization: 2e28d93c19cea76a372b00a0232ac205
+Authorization: 1239b64ee7ff62cdd1cab72d247c4847
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -85,17 +85,17 @@ Host: triglav.analytics.mbga.jp
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 240
+Content-Length: 241
 Content-Type: application/json; charset=utf-8
-ETag: W/"9f8c4285a416ea99ea34a54a63ffc94b"
+ETag: W/"944f1cdaa23aad16fd407287c0098f28"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: de73e0b1-f9a7-4e6d-a3f5-4ef5f9c44516
-X-Runtime: 0.008624
+X-Request-Id: 0f7fb897-ff99-4af5-b9a3-1b1f9da10d68
+X-Runtime: 0.006447
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 90,
+  "id": 126,
   "name": "user 2",
   "description": "description for user 2",
   "authenticator": "local",
@@ -103,8 +103,8 @@ X-XSS-Protection: 1; mode=block
     "triglav_admin"
   ],
   "email": "triglav-test@example.com",
-  "created_at": "2017-02-08T16:24:26.000+09:00",
-  "updated_at": "2017-02-08T16:24:26.000+09:00"
+  "created_at": "2017-02-08T16:37:08.000+09:00",
+  "updated_at": "2017-02-08T16:37:08.000+09:00"
 }
 ```
 
@@ -117,7 +117,7 @@ Create a user<br/>`authenticator` parameter accepts only `local`<br/>`ldap` user
 ```
 POST /api/v1/users HTTP/1.1
 Accept: application/json
-Authorization: 6989edd0c9e8095dae4a78c10e6a8e10
+Authorization: bda3f208ac32031562935a99fc25b9d6
 Content-Length: 164
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -138,17 +138,17 @@ Host: triglav.analytics.mbga.jp
 ```
 HTTP/1.1 201
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 240
+Content-Length: 241
 Content-Type: application/json; charset=utf-8
-ETag: W/"167e9f3bba6aa3394da089b6a9ae61e5"
+ETag: W/"a345d8990f2a13b5a18adf79f0269afd"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 1fc66629-9303-4534-a825-18d1e56bc204
-X-Runtime: 0.111268
+X-Request-Id: e5bf5227-79ff-4971-9747-4556a1f65811
+X-Runtime: 0.102518
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 92,
+  "id": 128,
   "name": "new user",
   "description": "description for new user",
   "authenticator": "local",
@@ -156,8 +156,8 @@ X-XSS-Protection: 1; mode=block
     "read_only"
   ],
   "email": "triglav-test@example.com",
-  "created_at": "2017-02-08T16:24:26.000+09:00",
-  "updated_at": "2017-02-08T16:24:26.000+09:00"
+  "created_at": "2017-02-08T16:37:08.000+09:00",
+  "updated_at": "2017-02-08T16:37:08.000+09:00"
 }
 ```
 
@@ -168,9 +168,9 @@ Update a user<br/>`authenticator` parameter accepts only `local`<br/>`name` cann
 
 #### Request
 ```
-PUT /api/v1/users/94 HTTP/1.1
+PUT /api/v1/users/130 HTTP/1.1
 Accept: application/json
-Authorization: 684cbfb0e6703444d561c7982c9bf3b9
+Authorization: c48cbcbd17df1c16fcda3b8bd5c8e1a3
 Content-Length: 168
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -192,17 +192,17 @@ Host: triglav.analytics.mbga.jp
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 261
+Content-Length: 262
 Content-Type: application/json; charset=utf-8
-ETag: W/"b2877596d82b657d2a8663f157090905"
+ETag: W/"53cbd90168319d9c73433bad2141b363"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: bf49f630-0a07-4a1b-ac90-f7aee638385f
-X-Runtime: 0.014409
+X-Request-Id: d96aa3f3-997f-4a0f-b8ec-a87971c34dfa
+X-Runtime: 0.012336
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 94,
+  "id": 130,
   "name": "original name",
   "description": "try to update description",
   "authenticator": "local",
@@ -212,8 +212,8 @@ X-XSS-Protection: 1; mode=block
     "group2"
   ],
   "email": "triglav-test@example.com",
-  "created_at": "2017-02-08T16:24:26.000+09:00",
-  "updated_at": "2017-02-08T16:24:26.000+09:00"
+  "created_at": "2017-02-08T16:37:08.000+09:00",
+  "updated_at": "2017-02-08T16:37:09.000+09:00"
 }
 ```
 
@@ -224,9 +224,9 @@ Delete a user
 
 #### Request
 ```
-DELETE /api/v1/users/96 HTTP/1.1
+DELETE /api/v1/users/132 HTTP/1.1
 Accept: application/json
-Authorization: 0efc39af046b82950d5958f800756365
+Authorization: 56045a056eb9fe19c1f2d68b5e16a2e8
 Content-Length: 0
 Content-Type: application/json
 Host: triglav.analytics.mbga.jp
@@ -238,7 +238,7 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: d4c5b544-35c5-4632-8db0-c4d238a87a92
-X-Runtime: 0.010318
+X-Request-Id: 5104445f-3ad2-4394-a971-0571e87b3822
+X-Runtime: 0.008852
 X-XSS-Protection: 1; mode=block
 ```
