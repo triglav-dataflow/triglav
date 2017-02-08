@@ -12,6 +12,8 @@ module Api
         MessageSerializer,
         MessageEachSerializer,
         Api::V1::MessagesController,
+        JobMessageEachSerializer,
+        Api::V1::JobMessagesController,
         ResourceSerializer,
         ResourceEachSerializer,
         AggregatedResourceEachSerializer,
