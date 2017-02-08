@@ -28,33 +28,6 @@ RSpec.describe 'Message resources', :type => :request do
     FactoryGirl.create(:message)
   end
 
-  describe "Fetch messages", :autodoc do
-
-    let(:description) do
-      "Fetch messages whose message id is greater than or equal to offset<br/>" \
-      "<br/>" \
-      "`offset` is required.<br/>" \
-      "`resource_uris` are optional, but one resource_uri should be set usually.<br/>" \
-      "`limit` is optional, and default is 100.<br/>" \
-      "Returned `resource_time` is in unix timestamp<br/>"
-    end
-
-    let(:params) do
-      {
-        offset: message.id,
-        limit: 100,
-      }
-    end
-
-    it "GET /api/v1/messages" do
-
-      get "/api/v1/messages", params: params, env: env
-
-      expect(response.status).to eq 200
-
-    end
-  end
-
   describe "Send messages", :autodoc do
 
     let(:description) do
@@ -79,6 +52,35 @@ RSpec.describe 'Message resources', :type => :request do
 
     end
   end
+
+  describe "Fetch messages", :autodoc do
+
+    let(:description) do
+      "Fetch messages whose message id is greater than or equal to offset<br/>" \
+      "<br/>" \
+      "`offset` is required.<br/>" \
+      "`resource_uris` are optional, but one resource_uri should be set usually.<br/>" \
+      "`limit` is optional, and default is 100.<br/>" \
+      "Returned `resource_time` is in unix timestamp<br/>"
+    end
+
+    let(:params) do
+      {
+        offset: message.id,
+        resource_uris: [message.resource_uri],
+        limit: 100,
+      }
+    end
+
+    it "GET /api/v1/messages" do
+
+      get "/api/v1/messages", params: params, env: env
+
+      expect(response.status).to eq 200
+
+    end
+  end
+
 
   describe "Get last message id", :autodoc do
 
