@@ -23,16 +23,16 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 96
 Content-Type: application/json; charset=utf-8
-ETag: W/"e86c7a95ccd4101ea6840ac45f22dc9d"
+ETag: W/"e9838aeb030d20eb8c7f0c93328bc29e"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: c7d0f061-44ff-4dff-9ca6-400de1daccfb
-X-Runtime: 0.109011
+X-Request-Id: 801d5480-ae2b-4f8a-99ba-17533df4d412
+X-Runtime: 0.184791
 X-XSS-Protection: 1; mode=block
 
 {
-  "access_token": "4205465110a3ba69bc9c99e299b0d773",
-  "expires_at": "2016-12-05T04:59:21.000+09:00"
+  "access_token": "f0f5ae58537642c7a2737519c42753e2",
+  "expires_at": "2017-03-10T16:37:07.000+09:00"
 }
 ```
 
@@ -45,7 +45,7 @@ Revoke access_token specified in Authorization header
 ```
 DELETE /api/v1/auth/token HTTP/1.1
 Accept: application/json
-Authorization: a1dae808c266f83d307bceb5c78e8dd0
+Authorization: 6d60957c80ff746fb07ab734e8371718
 Content-Length: 0
 Content-Type: application/json
 Host: medjed.analytics.mbga.jp
@@ -57,8 +57,8 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 75bc65ca-3418-41fb-b7c5-cb1a8992dd7f
-X-Runtime: 0.010984
+X-Request-Id: 814bdb2b-e358-4f4d-8c19-61a154467a47
+X-Runtime: 0.009636
 X-XSS-Protection: 1; mode=block
 ```
 
@@ -71,7 +71,7 @@ Returns user associted with the token specified in Authorization header<br/>The 
 ```
 GET /api/v1/auth/me HTTP/1.1
 Accept: application/json
-Authorization: 7d2837c0a70d24e1f5ff79670d5a2fa6
+Authorization: d91984b7cbfebf97327e4ca45c2d8078
 Content-Length: 0
 Content-Type: application/json
 Host: medjed.analytics.mbga.jp
@@ -81,17 +81,17 @@ Host: medjed.analytics.mbga.jp
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 248
+Content-Length: 250
 Content-Type: application/json; charset=utf-8
-ETag: W/"0c5d767eccb1882f8ff05522eaf6d9a1"
+ETag: W/"937c172e519058e44c6d02606063f6d7"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: f56e5d3c-a8a6-426d-8203-27b2b5b53199
-X-Runtime: 0.004525
+X-Request-Id: dd02cbb2-fbf9-43dc-af84-133d4f1e8471
+X-Runtime: 0.007278
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 9,
+  "id": 100,
   "name": "editorial_user",
   "description": "description for editorial_user",
   "authenticator": "local",
@@ -99,7 +99,7 @@ X-XSS-Protection: 1; mode=block
     "editor"
   ],
   "email": "triglav-test@example.com",
-  "created_at": "2016-11-05T04:59:21.000+09:00",
-  "updated_at": "2016-11-05T04:59:21.000+09:00"
+  "created_at": "2017-02-08T16:37:07.000+09:00",
+  "updated_at": "2017-02-08T16:37:07.000+09:00"
 }
 ```
