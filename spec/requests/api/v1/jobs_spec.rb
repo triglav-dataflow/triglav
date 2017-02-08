@@ -36,6 +36,7 @@ RSpec.describe 'Job resources', :type => :request do
       "Create a job if its id is not given, and update a job if its id is given.<br/>" \
       "Create resources if ids are not given for input and output resources, and update resources if ids are given for input and output resources. Destroy resources if ids of existing resources are not givens.<br/>" \
       "<br/>" \
+      "`logical_op` is optional (default is `or`). With `and`, a job_message event is fired if all input resources' events are set. With `or`, a job_message event is fired if one of input resources' event is set.<br/>" \
       "`span_in_days` is optional, and automatically filled with default value for both input and output resources.<br/>" \
       "`consumable` for input resources are automatically set to true because this job will consume events for the input resource.<br/>" \
       "`notifiable` for output resources should be set to 'true' only if the registered job will notify the end of job to triglav (i.e, send messages directly without triglav agent).<br/>"
