@@ -13,6 +13,7 @@ class JobMessageEachSerializer < ActiveModel::Serializer
     end
     property :job_id do
       key :type, :integer
+      key :format, :int64
       key :description, 'Job ID'
     end
     property :time do

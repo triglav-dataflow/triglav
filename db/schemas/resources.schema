@@ -4,9 +4,9 @@ create_table "resources", create_table_options do |t|
   t.string    "uri", collation: 'latin1_swedish_ci', null: false
   t.string    "unit", collation: 'latin1_swedish_ci', null: false # singular, daily, hourly
   t.string    "timezone", collation: 'latin1_swedish_ci', null: false # %:z format such as +00:00, +09:00
-  t.integer   "span_in_days" # duration to monitor
+  t.bigint    "span_in_days" # duration to monitor
 
-  # t.integer   "expires_after" # expire messages in this resource topic xx seconds after creation
+  # t.bigint   "expires_after" # expire messages in this resource topic xx seconds after creation
 
   t.boolean   "consumable",  default: false
   t.boolean   "notifiable",  default: false

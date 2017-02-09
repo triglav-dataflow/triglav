@@ -71,6 +71,7 @@ class ResourceSerializer < ActiveModel::Serializer
     end
     property :span_in_days do
       key :type, :integer
+      key :format, :int64
       key :description, 'Time span of resource to monitor, default is 32'
     end
     property :consumable do
