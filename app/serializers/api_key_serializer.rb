@@ -3,7 +3,7 @@ class ApiKeySerializer < ActiveModel::Serializer
 
   include Swagger::Blocks
 
-  swagger_schema :Credential, required: [:username, :password] do
+  swagger_schema :"Credential", required: [:username, :password] do
     property :username do
       key :type, :string
     end

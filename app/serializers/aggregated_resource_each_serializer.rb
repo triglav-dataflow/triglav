@@ -18,6 +18,7 @@ class AggregatedResourceEachSerializer < ActiveModel::Serializer
     end
     property :span_in_days do
       key :type, :integer
+      key :format, :int64
       key :description, "span in days"
     end
   end

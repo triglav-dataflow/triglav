@@ -21,6 +21,7 @@ module Api
             key :description, 'Offset (Greater than or equal to) ID for Messages to list from'
             key :required, true
             key :type, :integer
+            key :format, :int64
           end
           parameter do
             key :name, :limit
@@ -28,6 +29,7 @@ module Api
             key :description, 'Number of limits'
             key :required, false
             key :type, :integer
+            key :format, :int64
           end
           parameter do
             key :name, :resource_uris
@@ -159,6 +161,7 @@ module Api
         property :id do
           key :description, 'last message id'
           key :type, :integer
+          key :format, :int64
         end
       end
 

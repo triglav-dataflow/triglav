@@ -15,10 +15,12 @@ class JobEachSerializer < ActiveModel::Serializer
       key :type, :string
     end
     property :created_at do
-      key :type, :integer
+      key :type, :string
+      key :format, :"date-time"
     end
     property :updated_at do
-      key :type, :integer
+      key :type, :string
+      key :format, :"date-time"
     end
   end
 end
