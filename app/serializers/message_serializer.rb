@@ -15,6 +15,7 @@ class MessageSerializer < ActiveModel::Serializer
 
   def self.request_permit_params
     [
+      :uuid,
       :resource_uri,
       :resource_unit,
       :resource_time,
