@@ -1,5 +1,6 @@
 class MessageSerializer < ActiveModel::Serializer
   attributes :id,
+    :uuid,
     :resource_uri,
     :resource_unit,
     :resource_time,
@@ -51,6 +52,10 @@ class MessageSerializer < ActiveModel::Serializer
     :resource_unit,
     :resource_time,
     :resource_timezone] do
+    property :uuid do
+      key :type, :string
+      key :description, 'Universally Unique ID to be used to avoid duplicated messages'
+    end
     property :resource_uri do
       key :type, :string
       key :description, 'URI of Resource'
