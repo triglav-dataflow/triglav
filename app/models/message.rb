@@ -9,15 +9,18 @@ class Message < ApplicationRecord
 
   def self.create_messages(params_list)
     ActiveRecord::Base.transaction do
-      objs = []
+      before = self.all.size
       params_list.each do |params|
-        objs << self.build_with_job_message(params)
+        record = self.build_with_job_message(params)
+        record.save! if record
       end
-      self.import(objs)
+      {num_inserts: self.all.size - before}
     end
   end
 
   def self.build_with_job_message(params)
+    return nil if params[:uuid] and Message.find_by(uuid: params[:uuid])
+
     resource_uri = params[:resource_uri] || raise('resource_uri is required')
     resource_unit = params[:resource_unit] || raise('resource_unit is required')
     resource_timezone = params[:resource_timezone] || raise('resource_timezone is required')

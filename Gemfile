@@ -10,7 +10,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'record_with_operator', '~> 1.0.1'
 gem 'swagger-blocks'
 gem 'active_model_serializers'
-gem 'activerecord-import'
+# gem 'activerecord-import'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Database

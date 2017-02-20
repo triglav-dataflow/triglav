@@ -1,5 +1,7 @@
 create_table "messages", create_table_options do |t|
 
+  t.string   "uuid", collation: 'latin1_swedish_ci'
+
   t.string   "resource_uri", collation: 'latin1_swedish_ci', null: false
   t.string   "resource_unit", null: false
   t.string   "resource_timezone", null: false
@@ -14,4 +16,5 @@ end
 
 add_index "messages", ["id", "resource_uri", "resource_unit", "resource_time"], name: "index_messages"
 add_index "messages", ["updated_at", "id"]
+add_index "messages", ["uuid"], unique: true
 
