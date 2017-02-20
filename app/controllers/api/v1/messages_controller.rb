@@ -173,7 +173,7 @@ module Api
       private
 
       def messages_params
-        params.permit(_json: MessageSerializer.request_permit_params)[:_json]
+        params.permit(_json: MessageSerializer.request_permit_params, message: {})[:_json]
       end
     end
   end
