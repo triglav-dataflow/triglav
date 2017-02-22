@@ -1,0 +1,15 @@
+services:
+  - mysql
+rvm:
+  - 2.4.0
+gemfile:
+  - Gemfile
+env:
+  - RAILS_ENV=test
+bundler_args: --without development --path vendor/bundle
+before_install:
+  - gem update bundler
+script: 
+  - ./prepare.sh
+  - bundle exec rails db:create db:apply
+  - bundle exec rspec 
