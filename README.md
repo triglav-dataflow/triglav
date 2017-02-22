@@ -52,7 +52,7 @@ $ curl -H "Content-type: application/json" -H "Authorization: xxxxxxxxxxxxxxxxxx
 
 # Test
 
-Do migration with `RAILS_ENV=test`, then
+Do migration with `RAILS_ENV=test bundle exec rails db:create db:apply`, then
 
 ```
 bundle exec rspec
