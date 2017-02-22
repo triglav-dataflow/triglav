@@ -12,3 +12,4 @@ create_table "job_internal_messages", create_table_options do |t|
 end
 
 add_index "job_internal_messages", ["job_id", "resource_time", "resource_uri"], name: 'index_job_internal_messages'
+add_index "job_internal_messages", ["updated_at", "id"]

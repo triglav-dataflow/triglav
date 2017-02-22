@@ -10,3 +10,5 @@ create_table "job_messages", create_table_options do |t|
 end
 
 add_index "job_messages", ["id", "job_id"], name: 'index_job_messages'
+add_index "job_messages", ["updated_at", "id"]
+
