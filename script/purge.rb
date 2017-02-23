@@ -59,7 +59,7 @@ class Purge
     end
 
     def run
-      $stdout.puts "Purge before: #{purge_date})"
+      $stdout.puts "Purge before: #{purge_date}"
       purge(Message)
       purge(JobInternalMessage)
       purge(JobMessage)
