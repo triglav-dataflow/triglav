@@ -5,5 +5,5 @@
   "gemHomepage":"https://github.com/triglav-dataflow/triglav-client-ruby",
   "gemSummary":"A ruby client library for Triglav API",
   "gemDescription":"A ruby client library for Triglav API",
-  "gemVersion":"0.1.32"
+  "gemVersion":"0.1.33"
 }
