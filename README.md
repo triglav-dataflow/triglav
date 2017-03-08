@@ -139,3 +139,26 @@ bundle exec rails swagger:codegen
 
 Edit [VERSION](./VERSION)
 
+Release `../triglav-client-ruby`
+
+```
+bundle exec rails release:client-ruby
+```
+
+Release `../triglav-client-java`
+
+```
+bundle exec rails release:client-java
+```
+
+Release `triglav` itself (tagging version)
+
+```
+bundle exec rails release:core
+```
+
+Release all
+
+```
+bundle exec rails release:all
+```
