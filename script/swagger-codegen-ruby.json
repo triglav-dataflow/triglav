@@ -1,9 +1,0 @@
-{
-  "gemName":"triglav_client",
-  "moduleName":"TriglavClient",
-  "gemAuthor":"Triglav Team",
-  "gemHomepage":"https://github.com/triglav-dataflow/triglav-client-ruby",
-  "gemSummary":"A ruby client library for Triglav, data-driven workflow tool",
-  "gemDescription":"A ruby client library for Triglav, data-driven workflow tool",
-  "gemVersion":"1.0.0.pre1"
-}
