@@ -1,7 +1,0 @@
-{
-  "modelPackage":"io.github.triglav_dataflow.client",
-  "apiPackage":"io.github.triglav_dataflow.client.api",
-  "groupId":"io.github.triglav_dataflow",
-  "artifactId":"triglav-client-java",
-  "artifactVersion":"1.0.0.pre1"
-}

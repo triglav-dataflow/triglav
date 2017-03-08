@@ -114,21 +114,28 @@ bundle exec rake swagger:generate
 ## Generating Swagger API Clients
 
 ```
-wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.0/swagger-codegen-cli-2.2.0.jar -O ~/bin/swagger-codegen-cli.jar
+wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.0/swagger-codegen-cli-2.2.0.jar -O bin/swagger-codegen-cli.jar
 ```
 
-Ruby
+Generate `../triglav-client-ruby`
 
 ```
-script/swagger-codegen-ruby.sh ../triglav-client-ruby
+bundle exec rails swagger:codegen-ruby
 ```
 
-Edit `script/swagger-codegen-ruby.json` for gem version.
-
-Java
+Generate `../triglav-client-java`
 
 ```
-script/swagger-codegen-java.sh ../triglav-client-java
+bundle exec rails swagger:codegen-java
 ```
 
-Edit `script/swagger-codegen-java.json` for version.
+Generate both
+
+```
+bundle exec rails swagger:codegen
+```
+
+## Release
+
+Edit [VERSION](./VERSION)
+
