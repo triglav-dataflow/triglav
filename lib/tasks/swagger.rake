@@ -4,6 +4,8 @@ namespace :swagger do
   VERSION = File.read("#{Rails.root}/VERSION").chomp
   SWAGGER_JSON_PATH = "#{Rails.root}/tmp/swagger.json"
   SWAGGER_CODEGEN_CLI_PATH = "#{Rails.root}/bin/swagger-codegen-cli.jar"
+  TRIGLAV_CLIENT_JAVA_PATH = File.expand_path("#{Rails.root}/../triglav-client-java")
+  TRIGLAV_CLIENT_RUBY_PATH = File.expand_path("#{Rails.root}/../triglav-client-ruby")
 
   SWAGGER_CODEGEN_JAVA_CONFIG = {
     "modelPackage"=>"io.github.triglav_dataflow.client",
@@ -34,7 +36,6 @@ namespace :swagger do
 
   desc "Generate ../triglav-client-java"
   task :"codegen-java" => :generate do |t, args|
-    output = File.expand_path(File.join(Rails.root, '..', 'triglav-client-java'))
     %w[
       LICENSE
       README.md
@@ -46,7 +47,7 @@ namespace :swagger do
       pom.xml
       settings.gradle
     ].each do |file|
-      sh "rm -f #{File.join(output, file)}"
+      sh "rm -f #{File.join(TRIGLAV_CLIENT_JAVA_PATH, file)}"
     end
     Tempfile.create('triglav') do |fp|
       fp.write SWAGGER_CODEGEN_JAVA_CONFIG.to_json
@@ -55,14 +56,13 @@ namespace :swagger do
         " -i #{SWAGGER_JSON_PATH}" \
         " -l java" \
         " -c #{fp.path}" \
-        " -o #{output}"
-      sh "cd #{output} && ./gradlew build"
+        " -o #{TRIGLAV_CLIENT_JAVA_PATH}"
+      sh "cd #{TRIGLAV_CLIENT_JAVA_PATH} && ./gradlew build"
     end
   end
 
   desc "Generate ../triglav-client-ruby"
   task :"codegen-ruby" => :generate do |t, args|
-    output = File.expand_path(File.join(Rails.root, '..', 'triglav-client-ruby'))
     Tempfile.create('triglav') do |fp|
       fp.write SWAGGER_CODEGEN_RUBY_CONFIG.to_json
       fp.close
@@ -70,7 +70,7 @@ namespace :swagger do
         " -i #{SWAGGER_JSON_PATH}" \
         " -l ruby" \
         " -c #{fp.path}" \
-        " -o #{output}"
+        " -o #{TRIGLAV_CLIENT_RUBY_PATH}"
     end
   end
 

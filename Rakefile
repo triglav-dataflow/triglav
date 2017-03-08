@@ -5,7 +5,7 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-task :release do
-  sh 'git tag $(cat VERSION) || true'
-  sh 'git push origin $(cat VERSION)'
-end
+# see
+# * lib/tasks/ridgepole.rake
+# * lib/tasks/swagger.rake
+# * lib/tasks/release.rake
