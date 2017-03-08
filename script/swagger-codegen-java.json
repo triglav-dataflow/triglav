@@ -3,5 +3,5 @@
   "apiPackage":"io.github.triglav_dataflow.client.api",
   "groupId":"io.github.triglav_dataflow",
   "artifactId":"triglav-client-java",
-  "artifactVersion":"0.1.33"
+  "artifactVersion":"1.0.0.pre1"
 }
