@@ -150,8 +150,8 @@ module Api
       # DELETE /jobs/1
       # DELETE /jobs/1.json
       def destroy
-        set_job!
-        @job.destroy_with_resources!
+        set_job! rescue nil
+        @job.destroy_with_resources! if @job
         head :no_content
       end
 
