@@ -13,6 +13,13 @@ class JobMessage < ApplicationRecord
     resource_time = params[:resource_time] || raise('resource_time is required')
     resource_timezone = params[:resource_timezone] || raise('resource_timezone is required')
 
+    resource_ids = JobsInputResource.where(job_id: job_id).pluck(:resource_id)
+    resource = Resource.where(id: resource_ids).where(uri: resource_uri).first
+    return nil unless resource
+    if resource.span_in_days
+      return nil unless resource.in_span?(resource_time)
+    end
+
     JobInternalMessage.create_with(
       resource_unit: resource_unit,
       resource_timezone: resource_timezone

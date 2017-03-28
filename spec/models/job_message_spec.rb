@@ -43,6 +43,14 @@ RSpec.describe JobMessage, type: :model do
     FactoryGirl.create(:job_with_and_resources)
   end
 
+  before do
+    Timecop.freeze(Time.at(1356620400))
+  end
+
+  after do
+    Timecop.return
+  end
+
   describe 'create_if_orset' do
     context 'with single input resource' do
       it do
@@ -99,6 +107,43 @@ RSpec.describe JobMessage, type: :model do
         # a next comming event fires next OR event immediatelly
         subject = JobMessage.create_if_orset(params)
         expect(subject).to be_present
+      end
+    end
+
+    context 'with resource_time in span_in_days' do
+      it do
+        job = job_with_single_resource
+        resource = job.input_resources.first
+        resource.tap {|r| r.span_in_days = 1 }.save!
+        params = {
+          job_id: job.id,
+          resource_uri: resource.uri,
+          resource_unit: resource.unit,
+          resource_time: Time.now.to_i,
+          resource_timezone: resource.timezone
+        }
+        subject = JobMessage.create_if_orset(params)
+        expect(subject).to be_present
+        expect(subject.job_id).to eq(params[:job_id])
+        expect(subject.time).to eq(params[:resource_time])
+        expect(subject.timezone).to eq(params[:resource_timezone])
+      end
+    end
+
+    context 'with resource_time not in span_in_days' do
+      it do
+        job = job_with_single_resource
+        resource = job.input_resources.first
+        resource.tap {|r| r.span_in_days = 1 }.save!
+        params = {
+          job_id: job.id,
+          resource_uri: resource.uri,
+          resource_unit: resource.unit,
+          resource_time: Time.now.to_i - 24*3600 -1,
+          resource_timezone: resource.timezone
+        }
+        subject = JobMessage.create_if_orset(params)
+        expect(subject).to be_nil
       end
     end
   end

@@ -26,6 +26,13 @@ class Resource < ApplicationRecord
     end
   end
 
+  def in_span?(time)
+    return nil if span_in_days.nil?
+    now = Time.now.localtime(timezone)
+    from = now - (span_in_days * 86400)
+    time.to_i >= from.to_i
+  end
+
   # @param [Hash] params
   # @option params [String] :uri_prefix
   #
