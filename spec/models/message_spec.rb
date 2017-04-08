@@ -12,6 +12,16 @@ RSpec.describe Message, type: :model do
     }
   }
 
+  let(:now) { Time.parse('2012-12-28 00:00:00 +0900') }
+
+  before do
+    Timecop.freeze(now)
+  end
+
+  after do
+    Timecop.return
+  end
+
   describe '#validates' do
     it 'valid' do
       expect { Message.create!(message_params) }.not_to raise_error
@@ -40,7 +50,7 @@ RSpec.describe Message, type: :model do
         resource_uri: resource.uri,
         resource_unit: resource.unit,
         resource_timezone: resource.timezone,
-        resource_time: 1356361200,
+        resource_time: Time.now.to_i,
         payload: '{"path":"hdfs://foo/bar","last_modification_time":1356361200000}',
       }
     }
@@ -66,7 +76,7 @@ RSpec.describe Message, type: :model do
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_timezone: resource.timezone,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           payload: '{"path":"hdfs://foo/bar","last_modification_time":1356361200000}',
         }
       }
@@ -85,7 +95,7 @@ RSpec.describe Message, type: :model do
           resource_uri: resource.uri,
           resource_unit: resource.unit,
           resource_timezone: resource.timezone,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           payload: '{"path":"hdfs://foo/bar","last_modification_time":1356361200000}',
         }
       }

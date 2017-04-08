@@ -43,8 +43,10 @@ RSpec.describe JobMessage, type: :model do
     FactoryGirl.create(:job_with_and_resources)
   end
 
+  let(:now) { Time.parse('2012-12-28 00:00:00 +0900') }
+
   before do
-    Timecop.freeze(Time.at(1356620400))
+    Timecop.freeze(now)
   end
 
   after do
@@ -60,7 +62,7 @@ RSpec.describe JobMessage, type: :model do
           job_id: job.id,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           resource_timezone: resource.timezone
         }
         subject = JobMessage.create_if_orset(params)
@@ -82,7 +84,7 @@ RSpec.describe JobMessage, type: :model do
             job_id: job.id,
             resource_uri: resource.uri,
             resource_unit: resource.unit,
-            resource_time: 1356361200,
+            resource_time: Time.now.to_i,
             resource_timezone: resource.timezone
           }
           subject = JobMessage.create_if_orset(params)
@@ -94,7 +96,7 @@ RSpec.describe JobMessage, type: :model do
           job_id: job.id,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           resource_timezone: resource.timezone
         }
         # all set
@@ -157,7 +159,7 @@ RSpec.describe JobMessage, type: :model do
           job_id: job.id,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           resource_timezone: resource.timezone
         }
         subject = JobMessage.create_if_andset(params)
@@ -179,7 +181,7 @@ RSpec.describe JobMessage, type: :model do
             job_id: job.id,
             resource_uri: resource.uri,
             resource_unit: resource.unit,
-            resource_time: 1356361200,
+            resource_time: Time.now.to_i,
             resource_timezone: resource.timezone
           }
           subject = JobMessage.create_if_andset(params)
@@ -191,7 +193,7 @@ RSpec.describe JobMessage, type: :model do
           job_id: job.id,
           resource_uri: resource.uri,
           resource_unit: resource.unit,
-          resource_time: 1356361200,
+          resource_time: Time.now.to_i,
           resource_timezone: resource.timezone
         }
         # all set
