@@ -1,8 +1,8 @@
 class Job < ApplicationRecord
   validates :logical_op, inclusion: { in: %w(and or) }
   has_many :jobs_input_resources, dependent: :destroy
-  has_many :input_resources, through: :jobs_input_resources, source: 'resource'
   has_many :jobs_output_resources, dependent: :destroy
+  has_many :input_resources, through: :jobs_input_resources, source: 'resource'
   has_many :output_resources, through: :jobs_output_resources, source: 'resource'
 
   # This method does not support `id_or_uri`, but requires `id` to update `uri` parameter

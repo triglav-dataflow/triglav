@@ -10,6 +10,8 @@ class Resource < ApplicationRecord
 
   has_many :jobs_input_resources, dependent: :destroy
   has_many :jobs_output_resources, dependent: :destroy
+  has_many :input_jobs, through: :jobs_input_resources, source: 'job' # reverse of job.input_resources
+  has_many :output_jobs, through: :jobs_output_resources, source: 'job' # reverse of job.output_resources
 
   def set_default
     self.timezone ||= Settings.resource.default_timezone
