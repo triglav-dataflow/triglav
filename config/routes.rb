@@ -41,4 +41,8 @@ Rails.application.routes.draw do
     end
   end
   get '/apidocs' => redirect('/swagger/dist/index.html?url=/api/v1/apidocs.json')
+
+  # Not Found
+  match '*anything' => 'application#routing_error', via: :all
+  get '*anything' => 'application#routing_error' # Need this for HEAD request
 end
