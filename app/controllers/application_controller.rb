@@ -61,6 +61,7 @@ class ApplicationController < ActionController::API
         when ActiveRecord::RecordNotUnique; 400
         when ActiveRecord::RecordInvalid; 400
         when JSON::ParserError; 400
+        when ActionController::ParameterMissing; 400
         when Triglav::Error::StandardError; e.code
         else; ActionDispatch::ExceptionWrapper.new(env, e).status_code
         end
@@ -80,6 +81,7 @@ class ApplicationController < ActionController::API
       when ActiveRecord::RecordNotFound
       when ActiveRecord::RecordInvalid
       when JSON::ParserError
+      when ActionController::ParameterMissing
       when ActionController::RoutingError
       when ActionController::InvalidAuthenticityToken
       when ActionDispatch::ParamsParser::ParseError
