@@ -56,14 +56,14 @@ class ApplicationController < ActionController::API
       response = { error: e.message.present? ? e.message : e.class.name }
 
       status_code =
-          case e
-          when ActiveRecord::RecordNotFound; 400
-          when ActiveRecord::RecordNotUnique; 400
-          when ActiveRecord::RecordInvalid; 400
-          when JSON::ParserError; 400
-          when Triglav::Error::StandardError; e.code
-          else; ActionDispatch::ExceptionWrapper.new(env, e).status_code
-          end
+        case e
+        when ActiveRecord::RecordNotFound; 400
+        when ActiveRecord::RecordNotUnique; 400
+        when ActiveRecord::RecordInvalid; 400
+        when JSON::ParserError; 400
+        when Triglav::Error::StandardError; e.code
+        else; ActionDispatch::ExceptionWrapper.new(env, e).status_code
+        end
 
       if Rails.env.development? or Rails.env.test?
         response[:backtrace] = e.backtrace 
