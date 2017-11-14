@@ -1,3 +1,6 @@
+# Consumer monitors a JobMessage rather than a Message.
+#
+# JobMessage is created (fired) if AND/OR conditions are statisfied.
 class JobMessage < ApplicationRecord
   belongs_to :job
   validates :job_id, presence: true
