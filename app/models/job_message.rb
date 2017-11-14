@@ -4,8 +4,30 @@ class JobMessage < ApplicationRecord
   validates :time, presence: true, numericality: { only_integer: true }
   validates :timezone, presence: true, format: { with: /\A[+-]\d\d:\d\d\z/ }
 
-  # 1) Fire if all resources in a job for a resource_time is set
-  # 2) Back to 1 (that is, next comming event immediately fires a next OR message)
+  # OR conditions
+  #
+  # 1) Fire if all input resources of a job for a specific resource_time is set
+  #
+  # 1. Created
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Created(*) |
+  # |ResourceB |            |            |
+  #
+  # 2. Created => Fire
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Created    |
+  # |ResourceB |            | Created(*) |
+  #
+  # 3. Updated => Fire
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Updated(*) |
+  # |ResourceB |            | Created    |
   def self.create_if_orset(params)
     job_id = params[:job_id] || raise('job_id is required')
     resource_uri = params[:resource_uri] || raise('resource_uri is required')
@@ -28,35 +50,61 @@ class JobMessage < ApplicationRecord
       resource_time: resource_time,
       resource_uri: resource_uri,
     )
-    input_resources_size = JobsInputResource.where(
-      job_id: job_id
-    ).size
-    time_resources_size = JobInternalMessage.where(
-      job_id: job_id,
-      resource_time: resource_time
-    ).size
+
+    input_resources_size = JobsInputResource.where(job_id: job_id).size
+    time_resources_size = JobInternalMessage.where(job_id: job_id, resource_time: resource_time).size
 
     if time_resources_size == input_resources_size
-      JobMessage.create(
-        job_id: job_id,
-        time: resource_time,
-        timezone: resource_timezone
-      )
+      # Fire
+      JobMessage.create(job_id: job_id, time: resource_time, timezone: resource_timezone)
     else
       nil
     end
   end
 
-  # 1) Fire if all resources in a job for a resource_time is set
-  # 2) Reset all events for the resource_time
-  # 3) Back to 1
+  # AND conditions
+  #
+  # 1) Fire if all input resources of a job for a specific resource_time is set
+  # 2) Reset all events for the resource_time after fired
+  #
+  # 1. Created
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Created(*) |
+  # |ResourceB |            |            |
+  #
+  # 2. Created => Fire
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Created    |
+  # |ResourceB |            | Created(*) |
+  #
+  # Then, once delete
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            |            |
+  # |ResourceB |            |            |
+  #
+  # 3. Updated
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Updated(*) |
+  # |ResourceB |            |            |
+  #
+  # 4. Updated => Fire
+  #
+  # |          | 2017-04-16 | 2017-04-17 |
+  # |:---------|:-----------|:-----------|
+  # |ResourceA |            | Updated    |
+  # |ResourceB |            | Updated(*) |
   def self.create_if_andset(params)
     obj = create_if_orset(params)
     return unless obj
-    JobInternalMessage.where(
-      job_id: params[:job_id],
-      resource_time: params[:resource_time]
-    ).destroy_all
+    JobInternalMessage.where(job_id: params[:job_id], resource_time: params[:resource_time]).destroy_all
     obj
   end
 end
