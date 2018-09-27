@@ -16,6 +16,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Database
 gem 'mysql2'
 gem 'ridgepole', '~> 0.6.0.beta'
+gem 'activerecord_reconnect_after_checkout'
 
 # Authenticator
 gem 'bcrypt-ruby'
